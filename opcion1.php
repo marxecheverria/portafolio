@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echeverría & Asociados | Consultoría Legal Premium</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark-bg: #0f1115;
+            --soft-white: #f4f4f4;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--soft-white);
+        }
+        .font-legal { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Efecto de cristal para el header */
+        .glass-nav {
+            background: rgba(15, 17, 21, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        /* Animación sutil para el fondo */
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(197, 160, 89, 0.1), transparent),
+                        radial-gradient(circle at bottom left, rgba(197, 160, 89, 0.05), transparent);
+        }
+
+        .gold-border { border-color: var(--gold); }
+        .text-gold { color: var(--gold); }
+        .bg-gold { background-color: var(--gold); }
+
+        /* Botón Interactivo */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid var(--gold);
+        }
+        .btn-premium:hover {
+            background-color: var(--gold);
+            color: #000;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+        }
+    </style>
+</head>
+<body class="hero-gradient">
+
+    <nav class="fixed w-full z-50 glass-nav px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 border-2 gold-border flex items-center justify-center">
+                    <span class="text-gold font-legal text-2xl font-bold">E</span>
+                </div>
+                <span class="text-xl font-semibold tracking-widest uppercase">Echeverría <span class="text-gold">&</span> Asociados</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest italic">
+                <a href="#inicio" class="hover:text-gold transition">Inicio</a>
+                <a href="#servicios" class="hover:text-gold transition">Especialidades</a>
+                <a href="#nosotros" class="hover:text-gold transition">Firma</a>
+                <a href="#contacto" class="btn-premium px-6 py-2 rounded-sm text-gold">Consulta Gratuita</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-5xl text-center" data-aos="fade-up" data-aos-duration="1500">
+            <h2 class="text-gold uppercase tracking-[0.3em] text-sm mb-4">Justicia • Integridad • Excelencia</h2>
+                <h1 class="font-legal text-5xl md:text-8xl mb-8 leading-tight text-gray-400">
+                    Defendemos su legado con <br>
+                <span class="italic text-gold">Lucidez Estratégica</span>
+            </h1>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-10 text-lg font-light leading-relaxed">
+                Expertos en derecho corporativo y civil, brindando soluciones legales de alta complejidad con la discreción y firmeza que su caso merece.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="#servicios" class="btn-premium bg-gold text-black px-10 py-4 font-semibold uppercase tracking-widest">Explorar Servicios</a>
+                <a href="#contacto" class="px-10 py-4 border border-gray-600 hover:border-gold transition uppercase tracking-widest text-black">Contáctenos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 px-6 bg-[#0a0c0f]">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16" data-aos="fade-right">
+                <div>
+                    <h3 class="text-gold uppercase tracking-widest mb-2">Nuestras áreas</h3>
+                    <h2 class="font-legal text-4xl md:text-5xl">Especialidades Jurídicas</h2>
+                </div>
+                <p class="text-gray-500 max-w-md mt-4 md:mt-0 italic text-right">
+                    "La ley es la razón libre de pasión." — Aristóteles
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group p-10 border border-gray-800 hover:border-gold transition-all duration-500 bg-dark-bg" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fa-solid fa-scale-balanced text-4xl text-gold mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-legal text-2xl mb-4 italic text-gold">Derecho Corporativo</h4>
+                    <p class="text-gray-400 font-light leading-relaxed">Protección de activos, fusiones, adquisiciones y estructuración legal para empresas nacionales e internacionales.</p>
+                </div>
+                <div class="group p-10 border border-gray-800 hover:border-gold transition-all duration-500 bg-dark-bg" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fa-solid fa-gavel text-4xl text-gold mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-legal text-2xl mb-4 italic text-gold">Litigios Civiles</h4>
+                    <p class="text-gray-400 font-light leading-relaxed">Representación firme ante tribunales para la resolución de conflictos contractuales y de propiedad con alta efectividad.</p>
+                </div>
+                <div class="group p-10 border border-gray-800 hover:border-gold transition-all duration-500 bg-dark-bg" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fa-solid fa-handshake-simple text-4xl text-gold mb-6 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-legal text-2xl mb-4 italic text-gold">Propiedad Intelectual</h4>
+                    <p class="text-gray-400 font-light leading-relaxed">Salvaguardamos sus ideas, marcas y patentes bajo marcos legales internacionales y protección digital avanzada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto" class="py-16 px-6 border-t border-gray-900 text-center">
+        <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            <h2 class="font-legal text-4xl mb-6 text-gray-400">¿Requiere una estrategia legal sólida?</h2>
+            <p class="text-gray-400 mb-8">Nuestra firma opera bajo los más estrictos estándares de confidencialidad.</p>
+            <div class="flex justify-center space-x-8 mb-12">
+                <a href="mailto:marx.echeverria@gmail.com" class="text-gold text-2xl hover:scale-125 transition-transform"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" class="text-gold text-2xl hover:scale-125 transition-transform"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="text-gold text-2xl hover:scale-125 transition-transform"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <div class="text-xs tracking-[0.5em] text-gray-600 uppercase">
+                © 2026 Echeverría & Asociados • Quito, Ecuador
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar animaciones de scroll
+        AOS.init({
+            duration: 1000,
+            once: true,
+            mirror: false
+        });
+
+        // Cambio de color del nav al hacer scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.paddingTop = '1rem';
+                nav.style.paddingBottom = '1rem';
+                nav.classList.add('shadow-2xl');
+            } else {
+                nav.style.paddingTop = '1.5rem';
+                nav.style.paddingBottom = '1.5rem';
+                nav.classList.remove('shadow-2xl');
+            }
+        });
+    </script>
+
+</body>
+</html>

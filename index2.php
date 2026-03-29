@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marx Echeverría | Central de Soluciones Web</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-cyan: #00f2fe;
+            --space-gray: #1a1d23;
+            --bg-dark: #050505;
+            --accent-blue: #0ea5e9;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .font-tech { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Fondo de Partículas Estilizado */
+        #particles-js {
+            position: fixed;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
+            z-index: -1;
+        }
+
+        /* Glassmorphism Hub */
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .demo-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 30px 60px -12px rgba(0, 242, 254, 0.15);
+        }
+
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 242, 254, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.8s;
+        }
+
+        .demo-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Indicador de Status Neón */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--neon-cyan);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Botón de Lanzamiento Pro */
+        .btn-launch {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.7rem;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .btn-launch:hover {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Ayudas Visuales: Mockups Simulados */
+        .mockup-preview {
+            width: 100%;
+            height: 120px;
+            background: #111;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mockup-preview div {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            background: var(--accent-blue);
+            opacity: 0.2;
+            filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+    <div id="particles-js"></div>
+
+    <header class="w-full p-6 flex justify-between items-center border-b border-white/5 z-10 glass-nav">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-cyan-950 border border-cyan-600 flex items-center justify-center">
+                <span class="text-cyan-300 font-bold">M</span>
+            </div>
+            <span class="text-lg font-tech font-bold tracking-tight text-white">SYSTEM<span class="text-cyan-400 font-light">_EXPLORER</span></span>
+        </div>
+        <div class="flex items-center space-x-4 text-xs font-mono text-gray-500">
+            <span>QUITO_ECUADOR</span>
+            <span class="text-cyan-400">•</span>
+            <span id="digital-clock">00:00:00</span>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-8 md:p-24 z-10 relative">
+        
+        <div class="max-w-7xl mx-auto w-full">
+            
+            <div class="mb-24 text-center" data-aos="fade-down">
+                <div class="inline-flex items-center space-x-3 bg-cyan-950/30 border border-cyan-500/30 px-4 py-2 rounded-full mb-8">
+                    <span class="status-dot"></span>
+                    <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-400">Hub de Demostraciones Activo</span>
+                </div>
+                <h1 class="font-tech text-white mb-6">Arquitecturas de <span class="text-cyan-400">Solución</span></h1>
+                <p class="text-gray-500 max-w-2xl mx-auto text-lg font-light">Explora las implementaciones premium diseñadas para diferentes verticales de negocio. Cada opción representa un estándar de excelencia en UI/UX.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+                
+                <!-- Card 1: Legal -->
+                <div class="demo-card p-8 rounded-[32px] flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="mockup-preview">
+                            <div class="bg-amber-500/20"></div>
+                            <i class="fa-solid fa-scale-balanced absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-amber-500/40"></i>
+                        </div>
+                        <h4 class="font-tech text-xl font-bold mb-4 uppercase text-white group-hover:text-cyan-300 transition">Echeverría <br>& Asociados</h4>
+                        <p class="text-gray-500 text-xs font-medium leading-relaxed mb-10">Consultoría Legal Premium. Autoridad y prestigio visual.</p>
+                    </div>
+                    <a href="opcion1.php" class="btn-launch">Lanzar Demo</a>
+                </div>
+
+                <!-- Card 2: Salud -->
+                <div class="demo-card p-8 rounded-[32px] flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="mockup-preview">
+                            <div class="bg-sky-500/20"></div>
+                            <i class="fa-solid fa-heart-pulse absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-sky-500/40"></i>
+                        </div>
+                        <h4 class="font-tech text-xl font-bold mb-4 uppercase text-white group-hover:text-cyan-300 transition">CardioElite <br>Medical</h4>
+                        <p class="text-gray-500 text-xs font-medium leading-relaxed mb-10">Salud Digital. Limpieza, confianza y precisión médica.</p>
+                    </div>
+                    <a href="opcion2.php" class="btn-launch">Lanzar Demo</a>
+                </div>
+
+                <!-- Card 3: Tech -->
+                <div class="demo-card p-8 rounded-[32px] flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="mockup-preview">
+                            <div class="bg-orange-500/20"></div>
+                            <i class="fa-solid fa-microchip absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-orange-500/40"></i>
+                        </div>
+                        <h4 class="font-tech text-xl font-bold mb-4 uppercase text-white group-hover:text-cyan-300 transition">Nexus <br>Systems</h4>
+                        <p class="text-gray-500 text-xs font-medium leading-relaxed mb-10">Innovación Tecnológica. Disrupción y energía digital.</p>
+                    </div>
+                    <a href="opcion3.php" class="btn-launch">Lanzar Demo</a>
+                </div>
+
+                <!-- Card 4: Social -->
+                <div class="demo-card p-8 rounded-[32px] flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="400">
+                    <div>
+                        <div class="mockup-preview">
+                            <div class="bg-emerald-500/20"></div>
+                            <i class="fa-solid fa-seedling absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-emerald-500/40"></i>
+                        </div>
+                        <h4 class="font-tech text-xl font-bold mb-4 uppercase text-white group-hover:text-cyan-300 transition">Raíces <br>& Futuro</h4>
+                        <p class="text-gray-500 text-xs font-medium leading-relaxed mb-10">Desarrollo Social. Empatía y sostenibilidad orgánica.</p>
+                    </div>
+                    <a href="opcion4.php" class="btn-launch">Lanzar Demo</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full p-8 border-t border-white/5 z-10 text-center relative overflow-hidden">
+        <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6">
+            <div class="text-[10px] uppercase tracking-[0.6em] text-gray-600 font-mono">
+                Marx Echeverría • Fullstack Developer • Quito, EC
+            </div>
+            <div class="flex space-x-6 text-gray-500">
+                <a href="#" class="hover:text-cyan-400 transition"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition"><i class="fa-brands fa-behance"></i></a>
+            </div>
+            <div class="text-[10px] uppercase tracking-[0.4em] text-gray-700 font-bold italic">
+                v2.6.0-DEPLOYED
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Reloj Digital en tiempo real
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('es-EC', { hour12: false });
+            const clockEl = document.getElementById('digital-clock');
+            if (clockEl) clockEl.textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Efecto Parallax muy suave en las tarjetas
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.demo-card');
+            const xAxis = (window.innerWidth / 2 - e.clientX) / 100;
+            const yAxis = (window.innerHeight / 2 - e.clientY) / 100;
+            
+            cards.forEach(card => {
+                card.style.transform = `translateY(-15px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
