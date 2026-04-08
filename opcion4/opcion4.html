@@ -9,158 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Lora:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            /* Regla 60-30-10 Extendida */
-            --bg-60: #fdfaf5; 
-            --text-30: #2d2422; 
-            --accent-10: #4f7942; 
-            --accent-soft: #cc7e5c; 
-            --white: #ffffff;
-            --emerald-light: #ecf3ea;
-        }
-
-        /* Tipografía Hierárquica */
-        html { font-size: 16px; scroll-behavior: smooth; }
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-60);
-            color: var(--text-30);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .font-serif { font-family: 'Lora', serif; }
-
-        h1 { font-size: clamp(3.5rem, 10vw, 7.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.03em; }
-        h2 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 500; line-height: 1.2; }
-        h3 { font-size: 2.5rem; font-weight: 500; }
-        p { font-size: 1.15rem; color: #57534e; }
-
-        /* Navegación Elevada */
-        .nav-warm {
-            background: rgba(253, 250, 245, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(79, 121, 66, 0.08);
-            transition: all 0.4s ease;
-        }
-        .nav-scrolled {
-            padding: 0.8rem 0;
-            box-shadow: 0 10px 30px rgba(93, 64, 55, 0.05);
-        }
-
-        /* Botones con Micro-interacción Avanzada */
-        .btn-foundation {
-            position: relative;
-            background: var(--accent-10);
-            color: var(--white);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            border-radius: 100px;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-        }
-
-        .btn-foundation::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--accent-soft);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            z-index: -1;
-        }
-
-        .btn-foundation:hover {
-            color: var(--white);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(79, 121, 66, 0.2);
-        }
-
-        .btn-foundation:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        /* Imágenes con Efecto de Revelado */
-        .reveal-img {
-            position: relative;
-            overflow: hidden;
-            border-radius: 60px;
-        }
-        .reveal-img img {
-            transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .reveal-img:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Tarjetas de Impacto */
-        .impact-card {
-            background: var(--white);
-            border-radius: 50px;
-            padding: 4rem 3rem;
-            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 1px solid rgba(79, 121, 66, 0.05);
-            position: relative;
-        }
-        .impact-card:hover {
-            transform: translateY(-20px);
-            box-shadow: 0 40px 80px -20px rgba(93, 64, 55, 0.12);
-            border-color: var(--accent-10);
-        }
-
-        /* Blobs Orgánicos Animados */
-        .blob {
-            position: absolute;
-            background: linear-gradient(135deg, rgba(79, 121, 66, 0.08) 0%, rgba(204, 126, 92, 0.05) 100%);
-            filter: blur(80px);
-            z-index: -1;
-            border-radius: 50%;
-            animation: float 25s infinite alternate ease-in-out;
-        }
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-            50% { transform: translate(60px, 80px) scale(1.1) rotate(10deg); }
-            100% { transform: translate(-40px, 40px) scale(0.9) rotate(-10deg); }
-        }
-
-        /* Scroll Progress */
-        .scroll-progress {
-            position: fixed;
-            top: 0; left: 0;
-            height: 5px;
-            background: linear-gradient(to right, var(--accent-10), var(--accent-soft));
-            z-index: 1000;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        /* Footer con Curva Orgánica */
-        .footer-shape {
-            position: absolute;
-            top: -100px;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: var(--white);
-            clip-path: ellipse(70% 100% at 50% 100%);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="scroll-progress" id="progressBar"></div>
 
     <nav class="fixed w-full z-50 nav-warm px-8 py-6" id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3 group cursor-pointer">
+            <a href="../index.html" class="flex items-center space-x-3 group cursor-pointer">
                 <div class="w-12 h-12 bg-emerald-light rounded-2xl flex items-center justify-center group-hover:bg-emerald-600 transition-all duration-500 transform group-hover:rotate-12">
                     <i class="fa-solid fa-seedling text-emerald-600 group-hover:text-white text-xl"></i>
                 </div>
@@ -416,7 +272,7 @@
 
             <div class="pt-12 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center gap-6">
                 <p class="text-[10px] uppercase tracking-[0.4em] text-stone-400 font-bold">
-                    © 2026 Raíces & Futuro • LABS | Rediseño UI/UX por Marx Echeverría | <a href="index.html" class="hover:text-emerald-600">Volver</a>
+                    © 2026 Raíces & Futuro • LABS | Rediseño UI/UX por Marx Echeverría | <a href="../index.html" class="hover:text-emerald-600">Volver</a>
                 </p>
                 <div class="flex space-x-8 text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400">
                     <a href="#" class="hover:text-emerald-600 transition">Privacidad</a>
@@ -428,78 +284,6 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1500,
-            once: true,
-            easing: 'ease-out-quint'
-        });
-
-        // Barra de Progreso de Scroll
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-
-            // Efecto Navbar al hacer Scroll
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('nav-scrolled');
-            } else {
-                navbar.classList.remove('nav-scrolled');
-            }
-        });
-
-        // Contadores Animados
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200;
-
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
-
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            });
-        };
-
-        // Intersection Observer para activar contadores
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const impactSection = document.querySelector('#impacto');
-        if (impactSection) observer.observe(impactSection);
-
-        // Parallax suave para blobs decorativos
-        document.addEventListener('mousemove', (e) => {
-            const blobs = document.querySelectorAll('.blob');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-
-            blobs.forEach(blob => {
-                blob.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

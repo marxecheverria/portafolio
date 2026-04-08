@@ -1,0 +1,41 @@
+:root {
+    --gold: #c5a059;
+    --dark-bg: #0f1115;
+    --soft-white: #f4f4f4;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--soft-white);
+}
+.font-legal { font-family: 'Cormorant Garamond', serif; }
+
+/* Efecto de cristal para el header */
+.glass-nav {
+    background: rgba(15, 17, 21, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+/* Animación sutil para el fondo */
+.hero-gradient {
+    background: radial-gradient(circle at top right, rgba(197, 160, 89, 0.1), transparent),
+                radial-gradient(circle at bottom left, rgba(197, 160, 89, 0.05), transparent);
+}
+
+.gold-border { border-color: var(--gold); }
+.text-gold { color: var(--gold); }
+.bg-gold { background-color: var(--gold); }
+
+/* Botón Interactivo */
+.btn-premium {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 1px solid var(--gold);
+}
+.btn-premium:hover {
+    background-color: var(--gold);
+    color: #000;
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+}

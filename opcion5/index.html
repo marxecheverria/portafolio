@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naruto Shippuden Beast Party Plush Blind Box Keychain | Llaveros de Peluche</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Promo Bar -->
+    <div class="promo-bar">
+        🔥 ¡Oferta de Lanzamiento! 50% de descuento hoy  🔥
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-shopping-bag"></i> NICKY<span>SHOP</span>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <nav>
+                <div class="header-icons">
+                    <i class="far fa-user"></i>
+                    <i class="far fa-heart"></i>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge" id="cart-badge">0</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="container grid">
+                <!-- Gallery Section -->
+                <div class="product-gallery">
+                    <div class="gallery-layout">
+                        <div class="thumbnails">
+                            <img src="imagenes/descarga.avif" alt="Thumbnail 1" class="active" onclick="changeImage(this)">
+                            <img src="imagenes/descarga (1).avif" alt="Thumbnail 2" onclick="changeImage(this)">
+                            <img src="imagenes/descarga (2).avif" alt="Thumbnail 3" onclick="changeImage(this)">
+                            <img src="imagenes/descarga (3).avif" alt="Thumbnail 4" onclick="changeImage(this)">
+                            <img src="imagenes/descarga (4).avif" alt="Thumbnail 5" onclick="changeImage(this)">
+                            <img src="imagenes/descarga (5).avif" alt="Thumbnail 6" onclick="changeImage(this)">
+                            
+
+                        </div>
+                        <div class="main-image-container">
+                            <img id="main-product-img" src="imagenes/descarga.avif" alt="Naruto Plush Main">
+                            <div class="discount-badge">50% DTO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    
+                    <h1 id="product-title">Naruto Shippuden Beast Party </h1>
+                    
+                    
+
+                    <div class="price-section">
+                        <div class="price-container">
+                            <span class="old-price">$29.95</span>
+                            <span class="current-price">$14.97</span>
+                        </div>
+                        <span class="save-tag"><i class="fas fa-tag"></i> ¡Ahorras $14.98 hoy!</span>
+                    </div>
+
+                    <div class="stock-info">
+                        <p class="stock-status"><i class="fas fa-check-circle"></i> En Stock - Listo para enviar</p>
+                        <div class="stock-urgency">
+                            <i class="fas fa-bolt"></i> ¡Solo quedan <span id="stock-count">12</span> unidades en oferta!
+                        </div>
+                    </div>
+
+                    <!-- Variant Selection -->
+                    <div class="options-container">
+                        <div class="option-group">
+                            <label><i class="fas fa-box-open"></i> Selecciona Personaje (Caja Sorpresa):</label>
+                            <div class="variant-chips">
+                                <div class="chip active" onclick="selectVariant(this)">Naruto</div>
+                                <div class="chip" onclick="selectVariant(this)">Sasuke</div>
+                                <div class="chip" onclick="selectVariant(this)">Kakashi</div>
+                                <div class="chip" onclick="selectVariant(this)">Kurama</div>
+                                <div class="chip" onclick="selectVariant(this)">Sakura</div>
+                                <div class="chip" onclick="selectVariant(this)">Itachi</div>
+                                <div class="chip" onclick="selectVariant(this)">Aleatorio (Surprise)</div>
+                            </div>
+                        </div>
+
+                        <div class="quantity-group">
+                            <label><i class="fas fa-layer-group"></i> Cantidad:</label>
+                            <div class="quantity-selector">
+                                <button onclick="updateQty(-1)">-</button>
+                                <input type="number" id="quantity" value="1" min="1">
+                                <button onclick="updateQty(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="urgency-timer-banner">
+                        <div class="timer-content">
+                            <span class="timer-text">La oferta termina pronto:</span>
+                            <div id="countdown" class="timer">09:59</div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="add-to-cart-btn" onclick="handleAddToCart()">AÑADIR AL CARRITO</button>
+                        <button class="buy-now-btn" onclick="handleBuyNow()">COMPRAR AHORA</button>
+                    </div>
+
+                    
+                    <div class="trust-icons">
+                        <div class="secure-payment">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fab fa-cc-apple-pay"></i>
+                            <span>Pago 100% Seguro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Description Section -->
+        <section class="product-details container reveal">
+            <div class="tabs">
+                <button class="tab-link active" onclick="openTab(event, 'desc')">Descripción</button>
+                <button class="tab-link" onclick="openTab(event, 'specs')">Especificaciones</button>
+                <button class="tab-link" onclick="openTab(event, 'shipping')">Envío</button>
+            </div>
+            
+            <div id="desc" class="tab-content active">
+                <h3>¡La fiesta de bestias ha llegado!</h3>
+                <p>Colecciona tus personajes favoritos de Naruto Shippuden en este formato de peluche ultra suave y adorable. Cada llavero viene en una caja sorpresa (Blind Box), lo que hace que cada apertura sea una emocionante aventura.</p>
+                <p>Perfectos para colgar en tu mochila, llaves o decorar tu espacio personal. Hechos con materiales de alta calidad y detalles bordados.</p>
+            </div>
+            <div id="specs" class="tab-content">
+                <ul>
+                    <li><strong>Material:</strong> Poliéster Soft Touch / Relleno de algodón PP</li>
+                    <li><strong>Tamaño:</strong> Aprox. 10cm - 12cm</li>
+                    <li><strong>Tipo:</strong> Llavero de Peluche Blind Box</li>
+                    <li><strong>Personajes:</strong> Naruto, Sasuke, Kakashi, Sakura, Itachi, Kurama y más.</li>
+                </ul>
+            </div>
+            <div id="shipping" class="tab-content">
+                <p>Ofrecemos envío express gratuito en pedidos superiores a $20. Los pedidos se procesan en 24 horas y el tiempo de entrega estimado es de 5 a 7 días hábiles.</p>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews container reveal">
+            <div class="section-title">
+                <h2>Lo que dicen nuestros clientes</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>"Increíble nivel de detalle. El envío fue súper rápido y llegó en perfectas condiciones. ¡Totalmente recomendada!"</p>
+                    <div class="customer">- Carlos M.</div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>"Me encantó la calidad del material. Es más grande de lo que esperaba y luce espectacular en mi colección."</p>
+                    <div class="customer">- Elena R.</div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>"La mejor compra que he hecho. La caja llegó intacta y la figura es tal cual se ve en las fotos."</p>
+                    <div class="customer">- Javier S.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Products Section -->
+        <section class="related container reveal">
+            <div class="section-title">
+                <h2>También te podría gustar</h2>
+            </div>
+            <div class="related-grid">
+                <div class="product-card reveal">
+                    <img src="imagenes/descarga.avif" alt="Naruto Plush">
+                    <h4>Llavero Peluche Naruto</h4>
+                    <p class="price">$14.99</p>
+                </div>
+                <div class="product-card reveal">
+                    <img src="imagenes/descarga (4).avif" alt="Sasuke Plush">
+                    <h4>Llavero Peluche Sasuke</h4>
+                    <p class="price">$14.99</p>
+                </div>
+                <div class="product-card reveal">
+                    <img src="imagenes/descarga (5).avif" alt="Kakashi Plush">
+                    <h4>Llavero Peluche Kakashi</h4>
+                    <p class="price">$14.99</p>
+                </div>
+                <div class="product-card reveal">
+                    <img src="imagenes/descarga (1).avif" alt="Kurama Plush">
+                    <h4>Llavero Peluche Kurama</h4>
+                    <p class="price">$14.99</p>
+                </div>
+                <div class="product-card reveal">
+                    <img src="imagenes/descarga (2).avif" alt="Sakura Plush">
+                    <h4>Llavero Peluche Sakura</h4>
+                    <p class="price">$14.99</p>
+                </div>
+                <div class="product-card reveal">
+                    <img src="imagenes/descarga (3).avif" alt="Itachi Plush">
+                    <h4>Llavero Peluche Itachi</h4>
+                    <p class="price">$14.99</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta reveal">
+            <div class="container text-center">
+                <h2>¿Listo para completar tu colección?</h2>
+                <p>No dejes pasar esta oportunidad. ¡Quedan pocas unidades!</p>
+                <button class="buy-now-btn large" onclick="handleBuyNow()">
+                    ¡SÍ, QUIERO MI FIGURA AHORA!
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h4>NICKY<span>SHOP</span></h4>
+                <p>Tu destino número uno para coleccionables de anime exclusivos y regalos únicos.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#">Política de Envío</a></li>
+                    <li><a href="#">Términos de Servicio</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 InspireShop. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar / Modal -->
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        
+        <div id="cart-items-container" class="cart-items-container">
+            <!-- Items will be injected here by JS -->
+            <div class="empty-cart-msg">Tu carrito está vacío</div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="shipping-info-box">
+                <h4>📦 Información de Entrega</h4>
+                <p><strong>Quito:</strong> Entrega a domicilio por solo <span>$3.00</span></p>
+                <p><strong>Provincias:</strong> Envíos nacionales vía Servientrega por <span>$6.00</span></p>
+            </div>
+            
+            <div class="cart-total-section">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+            
+            <button class="whatsapp-btn" onclick="sendWhatsAppOrder()">
+                <i class="fab fa-whatsapp"></i> PEDIR POR WHATSAPP
+            </button>
+            <p class="order-note">Finaliza tu compra conversando con nosotros</p>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/593987040806?text=Hola!%20Tengo%20una%20consulta%20sobre%20los%20peluches%20de%20Naruto." class="whatsapp-float" target="_blank" aria-label="Consultas por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="float-tooltip">¿Tienes dudas? ¡Escríbenos!</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
