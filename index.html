@@ -1,209 +1,493 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marx Echeverría | Portafolio</title>
+    <title>Marx Echeverría | Portafolio Profesional de Soluciones Digitales</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --bg-pastel: #f0f4f8;
-            --card-white: #ffffff;
-            --text-main: #232946;
-            --accent-pink: #eebbc3;
-            --accent-blue: #b8c1ec;
-            --accent-yellow: #faeee7;
+            --bg-deep: #0a0a0b;
+            --bg-surface: #121214;
+            --text-muted: #80808a;
+            --accent-gold: #c5a059;
+            --border-line: rgba(255, 255, 255, 0.05);
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-pastel);
-            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
         }
 
-        .minimal-card {
-            background: var(--card-white);
-            border-radius: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+        .serif-font { font-family: 'DM Serif Display', serif; }
+
+        /* Estilo Ejecutivo: Minimalismo Oscuro */
+        .executive-nav {
+            background: rgba(10, 10, 11, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        /* Mockup de Navegador Ejecutivo */
+        .browser-mockup {
             width: 100%;
-            max-width: 380px; /* Ancho máximo para asegurar que el iframe cubra el espacio */
-        }
-
-        .minimal-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        .thumbnail-box {
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            position: relative;
+            background: #1a1a1c;
+            border-radius: 8px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
-            background: #eee;
+            border: 1px solid var(--border-line);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .browser-header {
+            height: 32px;
+            background: #1a1a1c;
             display: flex;
-            justify-content: center;
             align-items: center;
+            padding: 0 15px;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-line);
         }
 
-        .thumbnail-box iframe {
-            width: 1200px;
-            height: 750px;
+        .browser-dot { width: 8px; height: 8px; border-radius: 50%; background: #2d2d30; }
+
+        .browser-content {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+        }
+
+        .browser-content iframe {
+            width: 1400px;
+            height: 900px;
             border: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.32); /* Ajustado para ocupar el ancho */
-            pointer-events: none;
-            transition: transform 0.5s ease;
-        }
-
-        .minimal-card:hover .thumbnail-box iframe {
-            transform: translate(-50%, -50%) scale(0.35);
-        }
-
-        .thumbnail-overlay {
             position: absolute;
             top: 0;
             left: 0;
+            transform: scale(0.2); /* Escala profesional compacta */
+            transform-origin: 0 0;
+            pointer-events: none;
+            transition: transform 1s ease;
+            opacity: 0.85;
+        }
+
+        /* Card de Proyecto Profesional */
+        .project-card:hover .browser-mockup {
+            transform: translateY(-15px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 40px 100px -20px rgba(197, 160, 89, 0.15);
+        }
+
+        .project-card:hover .browser-content iframe {
+            transform: scale(0.22);
+            opacity: 1;
+        }
+
+        /* Filtros y Categorías */
+        .filter-btn {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 8px 24px;
+            border-radius: 100px;
+            color: var(--text-muted);
+            border: 1px solid var(--border-line);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            background: rgba(197, 160, 89, 0.05);
+        }
+
+        /* Tipografía Editorial */
+        .main-title {
+            font-size: clamp(3.5rem, 12vw, 8rem);
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+        }
+
+        /* Botón de Acción Serio */
+        .btn-action {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-action:hover {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        /* Badge de Producción vs Concepto */
+        .badge-type {
+            font-size: 0.55rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 2px 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .badge-production { background: #1a1c1a; color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.1); }
+        .badge-concept { background: #1a1a1c; color: var(--accent-gold); border: 1px solid rgba(197, 160, 89, 0.1); }
+
+        .iframe-shield { position: absolute; inset: 0; z-index: 10; }
+
+        .project-placeholder {
             width: 100%;
             height: 100%;
-            z-index: 5;
-            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #121214;
+            color: #2d2d30;
+            font-size: 3rem;
         }
 
-        .btn-view {
-            background-color: var(--accent-blue);
-            color: var(--text-main);
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .btn-view:hover {
-            background-color: var(--accent-pink);
-            transform: scale(1.02);
-        }
-
-        /* Custom backgrounds for thumbnails */
-        .bg-legal { background-color: #faeee7; color: #33272a; }
-        .bg-medical { background-color: #dcfce7; color: #166534; }
-        .bg-tech { background-color: #e0f2fe; color: #075985; }
-        .bg-social { background-color: #fef3c7; color: #92400e; }
-        .bg-shop { background-color: #fce7f3; color: #9d174d; }
-
+        /* Animación para filtrado */
+        .project-card { transition: all 0.5s ease; }
+        .project-card.hidden { display: none; opacity: 0; transform: scale(0.9); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen">
 
-    <header class="w-full p-8 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-2xl bg-[#b8c1ec] flex items-center justify-center shadow-sm">
-                <span class="text-[#232946] font-bold">M</span>
+    <nav class="fixed top-0 left-0 w-full z-50 executive-nav py-6 px-10">
+        <div class="max-w-screen-2xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <span class="serif-font text-3xl font-bold tracking-tighter text-white">M<span class="text-[var(--accent-gold)]">.</span>E</span>
+                <span class="w-[1px] h-6 bg-white/10 hidden md:block"></span>
+                <span class="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-white/40 hidden md:block">Architectural Digital Solutions</span>
             </div>
-            <span class="text-xl font-bold tracking-tight">MARX<span class="opacity-50 font-normal">.DEV</span></span>
+            <div class="flex items-center gap-10">
+                <div class="hidden lg:flex items-center gap-8 text-[0.65rem] font-bold uppercase tracking-widest text-white/50">
+                    <span id="digital-clock">00:00:00</span>
+                    <span>Quito, EC</span>
+                </div>
+                <a href="#contacto" class="btn-action !py-2 !px-6">Contacto</a>
+            </div>
         </div>
-        <div class="hidden md:flex items-center space-x-8 text-sm font-medium opacity-60">
-            <span id="digital-clock">00:00:00</span>
-            <span>QUITO, EC</span>
-        </div>
-    </header>
+    </nav>
 
-    <main class="flex-grow flex flex-col items-center justify-center px-6 py-12 md:py-24">
+    <main class="pt-48 pb-40 px-10">
         
-        <div class="max-w-7xl w-full">
-            
-            <div class="mb-20 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Mis <span class="text-[#eebbc3]">Proyectos</span></h1>
-                <p class="text-lg opacity-60 max-w-2xl mx-auto font-light">Una selección de soluciones digitales minimalistas con enfoque en UI/UX.</p>
+        <!-- Hero: Autoridad y Elegancia -->
+        <section class="max-w-screen-2xl mx-auto mb-48">
+            <div class="grid lg:grid-cols-12 gap-16 items-end">
+                <div class="lg:col-span-8" data-aos="fade-up">
+                    <h1 class="main-title serif-font mb-12">
+                        Sistemas de <br>
+                        <span class="italic font-light text-[var(--accent-gold)]">Alto Rendimiento</span>
+                    </h1>
+                </div>
+                <div class="lg:col-span-4 pb-6" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-lg text-white/40 font-light leading-relaxed border-l-2 border-[var(--accent-gold)] pl-8">
+                        Ingeniería de software y arquitectura visual fusionadas para soluciones corporativas, e-commerce transaccional y plataformas en producción real.
+                    </p>
+                </div>
             </div>
+        </section>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <!-- Filtros de Categoría -->
+        <section class="max-w-screen-2xl mx-auto mb-20 flex flex-wrap gap-4" data-aos="fade-in">
+            <button class="filter-btn active" onclick="filterProjects('all')">Todos</button>
+            <button class="filter-btn" onclick="filterProjects('production')">Sistemas en Producción</button>
+            <button class="filter-btn" onclick="filterProjects('concept')">Arquitecturas de Concepto</button>
+        </section>
+
+        <!-- Grid de Proyectos -->
+        <section class="max-w-screen-2xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-32" id="projects-grid">
                 
-                <!-- Card 1: Legal -->
-                <div class="minimal-card p-6 flex flex-col relative">
-                    <div class="thumbnail-box bg-legal">
-                        <iframe src="opcion1/opcion1.html" scrolling="no"></iframe>
-                        <div class="thumbnail-overlay"></div>
+                <!-- PROYECTO 1: MegaTienda (Producción) -->
+                <div class="project-card flex flex-col gap-6" data-type="production" data-aos="fade-up">
+                    <a href="http://supermegatienda.onlinewebshop.net/" target="_blank" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="http://supermegatienda.onlinewebshop.net/" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-production">Producción</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">MegaTienda E-commerce</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Plataforma transaccional para tecnología con control de inventario automatizado y analítica de ventas en tiempo real.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>PHP</span><span>MySQL</span><span>JS</span>
+                        </div>
                     </div>
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Echeverría & Asociados</h3>
-                        <p class="text-sm opacity-60 mb-6 leading-relaxed">Consultoría Legal Premium con un diseño elegante y profesional.</p>
-                    </div>
-                    <a href="opcion1/opcion1.html" class="btn-view">Ver Demo</a>
                 </div>
 
-                <!-- Card 2: Salud -->
-                <div class="minimal-card p-6 flex flex-col relative">
-                    <div class="thumbnail-box bg-medical">
-                        <iframe src="opcion2/opcion2.html" scrolling="no"></iframe>
-                        <div class="thumbnail-overlay"></div>
+                <!-- PROYECTO 2: Rifas (Producción) -->
+                <div class="project-card flex flex-col gap-6" data-type="production" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://rifa1.phindolsw.com/" target="_blank" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="https://rifa1.phindolsw.com/" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-production">Producción</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">Sistema de Rifas</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Gestión transaccional masiva de boletos numerados con validación de pagos y API REST para integraciones.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>PHP</span><span>Composer</span><span>REST API</span>
+                        </div>
                     </div>
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-bold mb-2">CardioElite Medical</h3>
-                        <p class="text-sm opacity-60 mb-6 leading-relaxed">Plataforma de salud digital enfocada en la confianza y precisión.</p>
-                    </div>
-                    <a href="opcion2/opcion2.html" class="btn-view">Ver Demo</a>
                 </div>
 
-                <!-- Card 3: Tech -->
-                <div class="minimal-card p-6 flex flex-col relative">
-                    <div class="thumbnail-box bg-tech">
-                        <iframe src="opcion3/opcion3.html" scrolling="no"></iframe>
-                        <div class="thumbnail-overlay"></div>
+                <!-- PROYECTO 3: Phindol Swimwear (Producción) -->
+                <div class="project-card flex flex-col gap-6" data-type="production" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://phindolsw.com/" target="_blank" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="https://phindolsw.com/" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-production">Producción</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">Phindol Swimwear</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">E-commerce visual de alta conversión con catálogo dinámico y cierre de ventas directo vía WhatsApp.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>Visual UX</span><span>Inventory</span><span>Social Sales</span>
+                        </div>
                     </div>
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Nexus Systems</h3>
-                        <p class="text-sm opacity-60 mb-6 leading-relaxed">Arquitectura de sistemas de próxima generación con estilo futurista.</p>
-                    </div>
-                    <a href="opcion3/opcion3.html" class="btn-view">Ver Demo</a>
                 </div>
 
-                <!-- Card 4: Social -->
-                <div class="minimal-card p-6 flex flex-col relative">
-                    <div class="thumbnail-box bg-social">
-                        <iframe src="opcion4/opcion4.html" scrolling="no"></iframe>
-                        <div class="thumbnail-overlay"></div>
+                <!-- PROYECTO 4: DAYENU SPA (Producción) -->
+                <div class="project-card flex flex-col gap-6" data-type="production" data-aos="fade-up">
+                    <a href="http://dayenu.onlinewebshop.net/" target="_blank" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="http://dayenu.onlinewebshop.net/" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-production">Producción</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">DAYENU SPA</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Plataforma de bienestar moderna orientada a la conversión de servicios y reservas en línea.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>React</span><span>Tailwind</span><span>Node</span>
+                        </div>
                     </div>
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Raíces & Futuro</h3>
-                        <p class="text-sm opacity-60 mb-6 leading-relaxed">Fundación para el desarrollo social con un diseño cálido y orgánico.</p>
-                    </div>
-                    <a href="opcion4/opcion4.html" class="btn-view">Ver Demo</a>
                 </div>
 
-                <!-- Card 5: Shop -->
-                <div class="minimal-card p-6 flex flex-col relative">
-                    <div class="thumbnail-box bg-shop">
-                        <iframe src="opcion5/index.html" scrolling="no"></iframe>
-                        <div class="thumbnail-overlay"></div>
+                <!-- PROYECTO 5: Fundación Imaynalla (Producción) -->
+                <div class="project-card flex flex-col gap-6" data-type="production" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://imaynalla.org/" target="_blank" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="https://imaynalla.org/" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-production">Producción</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">Fundación Imaynalla</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Plataforma CMS autogestionable para una de las instituciones sociales más importantes de la región.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>WordPress</span><span>CMS</span><span>Social</span>
+                        </div>
                     </div>
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-bold mb-2">Nicky Shop</h3>
-                        <p class="text-sm opacity-60 mb-6 leading-relaxed">E-commerce de productos exclusivos con una interfaz alegre y moderna.</p>
+                </div>
+
+                <!-- PROYECTO 6: Registro de Niños (Producción) -->
+                <div class="project-card flex flex-col gap-6" data-type="production" data-aos="fade-up" data-aos-delay="200">
+                    <div class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="project-placeholder"><i class="fa-solid fa-users-gear"></i></div>
+                        </div>
                     </div>
-                    <a href="opcion5/index.html" class="btn-view">Ver Demo</a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-production">Producción</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">Registro de Niños</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Sistema administrativo robusto con CRUD completo, exportación a Excel y roles de usuario avanzados.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>Internal System</span><span>Excel API</span><span>Admin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 7: Legal (Concepto) -->
+                <div class="project-card flex flex-col gap-6" data-type="concept" data-aos="fade-up">
+                    <a href="opcion1/opcion1.html" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="opcion1/opcion1.html" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-concept">Concepto</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">Echeverría Legal</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Diseño de identidad digital para bufetes de abogados premium, proyectando autoridad y confianza.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>UI Design</span><span>Branding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 8: CardioElite (Concepto) -->
+                <div class="project-card flex flex-col gap-6" data-type="concept" data-aos="fade-up" data-aos-delay="100">
+                    <a href="opcion2/opcion2.html" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="opcion2/opcion2.html" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-concept">Concepto</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">CardioElite Medical</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Arquitectura de interfaz para clínicas especializadas con enfoque en la experiencia del paciente.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>Health Tech</span><span>UX Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 9: Nexus (Concepto) -->
+                <div class="project-card flex flex-col gap-6" data-type="concept" data-aos="fade-up" data-aos-delay="200">
+                    <a href="opcion3/opcion3.html" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="opcion3/opcion3.html" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-concept">Concepto</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">Nexus Systems</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Visión futurista de sistemas de gestión de infraestructura y seguridad digital avanzada.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>Infrastructure</span><span>Security</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 10: Juegos Educativos (Concepto) -->
+                <div class="project-card flex flex-col gap-6" data-type="concept" data-aos="fade-up">
+                    <a href="https://marxecheverria.github.io/juegodepalabras/" target="_blank" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="https://marxecheverria.github.io/juegodepalabras/" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-concept">Concepto</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">Juegos de Palabras</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Suite educativa interactiva para desarrollo cognitivo mediante lógica de juegos en tiempo real.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>JavaScript</span><span>Logic</span><span>EdTech</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 11: Portfolio Interactivo (Concepto) -->
+                <div class="project-card flex flex-col gap-6" data-type="concept" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://marxecheverria.github.io/portfolio-interactivo/" target="_blank" class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+                        </div>
+                        <div class="browser-content">
+                            <iframe src="https://marxecheverria.github.io/portfolio-interactivo/" scrolling="no"></iframe>
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
+                    <div class="flex flex-col">
+                        <span class="badge-type badge-concept">Concepto</span>
+                        <h3 class="serif-font text-3xl font-bold mb-3">Terminal Interactiva</h3>
+                        <p class="text-sm text-white/40 leading-relaxed font-light mb-6">Experiencia de navegación basada en consola que demuestra dominio creativo del frontend.</p>
+                        <div class="flex gap-4 text-[0.6rem] font-bold text-[var(--accent-gold)] uppercase tracking-widest">
+                            <span>Creativity</span><span>UX Design</span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="w-full p-12 text-center opacity-40 text-xs tracking-widest font-medium uppercase">
-        Marx Echeverría &copy; 2026 &bull; Hecho con amor en Quito
+    <footer id="contacto" class="py-32 px-10 border-t border-white/5 bg-[#080809]">
+        <div class="max-w-screen-2xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
+            <div>
+                <h2 class="serif-font text-5xl mb-8">¿Hablamos de su <br> <span class="text-[var(--accent-gold)] italic font-light">próximo proyecto?</span></h2>
+                <p class="text-white/40 font-light text-lg max-w-md mb-12">Disponible para consultoría técnica, desarrollo de sistemas corporativos y soluciones de comercio electrónico.</p>
+                <a href="mailto:marx.echeverria@gmail.com" class="btn-action">Iniciar Conversación</a>
+            </div>
+            <div class="grid grid-cols-2 gap-12">
+                <div class="flex flex-col gap-6">
+                    <span class="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-white/20">Ubicación</span>
+                    <span class="text-sm font-medium">Quito, Ecuador</span>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <span class="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-white/20">Digital</span>
+                    <div class="flex gap-8 text-xl text-white/40">
+                        <a href="#" class="hover:text-[var(--accent-gold)] transition"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="hover:text-[var(--accent-gold)] transition"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-screen-2xl mx-auto mt-32 pt-10 border-t border-white/5 flex justify-between items-center">
+            <span class="text-[0.6rem] font-bold uppercase tracking-[0.5em] text-white/10">© 2026 Marx Echeverría &bull; Executive Series</span>
+            <span class="text-[0.6rem] font-bold uppercase tracking-[0.5em] text-white/10">v4.0.0-PRO</span>
+        </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({ duration: 1000, once: true, easing: 'ease-out-expo' });
+
         function updateClock() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('es-EC', { hour12: false });
@@ -212,6 +496,28 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase().includes(category) || (category === 'all' && btn.innerText.toLowerCase() === 'todos')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.type === category) {
+                    card.classList.remove('hidden');
+                    setTimeout(() => card.style.opacity = '1', 10);
+                } else {
+                    card.classList.add('hidden');
+                    card.style.opacity = '0';
+                }
+            });
+        }
     </script>
 </body>
 </html>
