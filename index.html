@@ -68,18 +68,44 @@
             background: #000;
         }
 
-        .browser-content iframe {
-            width: 1400px;
-            height: 900px;
+        /* Estilo base para previsualización (iframe e imágenes) */
+        .browser-content iframe, .browser-content img {
             border: none;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.2); /* Centrado absoluto con escala */
-            transform-origin: center;
-            pointer-events: none;
-            transition: transform 1s ease;
             opacity: 0.85;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        /* Imágenes de previsualización: Llenado uniforme */
+        .browser-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            inset: 0;
+            transform: scale(1);
+        }
+
+        /* Iframe de previsualización: Simulación de escritorio escalada */
+        .browser-content iframe {
+            width: 1400px; /* Ancho virtual de escritorio */
+            height: 1000px; /* Alto virtual */
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) scale(0.35); /* Ajuste preciso para llenar el contenedor de 240px */
+            transform-origin: top center;
+        }
+
+        /* Hover: Interacción unificada */
+        .project-card:hover .browser-content iframe {
+            transform: translateX(-50%) scale(0.38);
+            opacity: 1;
+        }
+
+        .project-card:hover .browser-content img {
+            transform: scale(1.05);
+            opacity: 1;
         }
 
         /* Card de Proyecto Profesional */
@@ -91,6 +117,11 @@
 
         .project-card:hover .browser-content iframe {
             transform: translate(-50%, -50%) scale(0.22);
+            opacity: 1;
+        }
+
+        .project-card:hover .browser-content img {
+            transform: scale(1.05);
             opacity: 1;
         }
 
@@ -178,6 +209,138 @@
             transition: all 0.6s ease;
         }
 
+        /* Modal de Previsualización */
+        #preview-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(10, 10, 11, 0.98);
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #preview-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-container {
+            width: 95%;
+            height: 90%;
+            max-width: 1600px;
+            background: #1a1a1c;
+            border: 1px solid var(--border-line);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #preview-modal.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            height: 60px;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #1a1a1c;
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        .modal-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .control-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .modal-url {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 20px;
+            border-radius: 100px;
+            border: 1px solid var(--border-line);
+            letter-spacing: 0.05em;
+            max-width: 400px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .close-modal {
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-gold);
+        }
+
+        .modal-content {
+            flex: 1;
+            position: relative;
+            background: #000;
+        }
+
+        #preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        #preview-iframe.loaded {
+            opacity: 1;
+        }
+
+        .loader-container {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            background: var(--accent-gold);
+            animation: loading 2s infinite ease-in-out;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
         .project-placeholder::before {
             content: 'LIVE PREVIEW RESTRICTED';
             font-size: 0.5rem;
@@ -254,10 +417,8 @@
                             <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="project-placeholder">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <div class="text-[0.5rem] font-bold uppercase tracking-[0.4em] opacity-30">External Platform</div>
-                            </div>
+                            <img src="https://s0.wp.com/mshots/v1/http%3A%2F%2Fsupermegatienda.onlinewebshop.net%2F?w=1200" alt="MegaTienda">
+                            <div class="iframe-shield"></div>
                         </div>
                     </a>
                     <div class="flex flex-col">
@@ -277,10 +438,8 @@
                             <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="project-placeholder">
-                                <i class="fa-solid fa-ticket"></i>
-                                <div class="text-[0.5rem] font-bold uppercase tracking-[0.4em] opacity-30">Secure Transactional</div>
-                            </div>
+                            <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Frifa1.phindolsw.com%2F?w=1200" alt="Sistema de Rifas">
+                            <div class="iframe-shield"></div>
                         </div>
                     </a>
                     <div class="flex flex-col">
@@ -300,10 +459,8 @@
                             <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="project-placeholder">
-                                <i class="fa-solid fa-shirt"></i>
-                                <div class="text-[0.5rem] font-bold uppercase tracking-[0.4em] opacity-30">Visual Catalog</div>
-                            </div>
+                            <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fphindolsw.com%2F?w=1200" alt="Phindol Swimwear">
+                            <div class="iframe-shield"></div>
                         </div>
                     </a>
                     <div class="flex flex-col">
@@ -323,10 +480,8 @@
                             <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="project-placeholder">
-                                <i class="fa-solid fa-spa"></i>
-                                <div class="text-[0.5rem] font-bold uppercase tracking-[0.4em] opacity-30">Wellness Platform</div>
-                            </div>
+                            <img src="https://s0.wp.com/mshots/v1/http%3A%2F%2Fdayenu.onlinewebshop.net%2F?w=1200" alt="DAYENU SPA">
+                            <div class="iframe-shield"></div>
                         </div>
                     </a>
                     <div class="flex flex-col">
@@ -346,10 +501,8 @@
                             <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="project-placeholder">
-                                <i class="fa-solid fa-globe"></i>
-                                <div class="text-[0.5rem] font-bold uppercase tracking-[0.4em] opacity-30">Institutional CMS</div>
-                            </div>
+                            <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fimaynalla.org%2F?w=1200" alt="Fundación Imaynalla">
+                            <div class="iframe-shield"></div>
                         </div>
                     </a>
                     <div class="flex flex-col">
@@ -369,10 +522,8 @@
                             <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="project-placeholder">
-                                <i class="fa-solid fa-users-gear"></i>
-                                <div class="text-[0.5rem] font-bold uppercase tracking-[0.4em] opacity-30">Admin Dashboard</div>
-                            </div>
+                            <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fsistema.imaynalla.org%2F?w=1200" alt="Registro de Niños">
+                            <div class="iframe-shield"></div>
                         </div>
                     </a>
                     <div class="flex flex-col">
@@ -497,10 +648,8 @@
                             <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="project-placeholder">
-                                <i class="fa-solid fa-gamepad"></i>
-                                <div class="text-[0.5rem] font-bold uppercase tracking-[0.4em] opacity-30">Interactive EdTech</div>
-                            </div>
+                            <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fmarxecheverria.github.io%2Fjuegodepalabras%2F?w=1200" alt="Juegos de Palabras">
+                            <div class="iframe-shield"></div>
                         </div>
                     </a>
                     <div class="flex flex-col">
@@ -520,12 +669,10 @@
                             <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
                         </div>
                         <div class="browser-content">
-                            <div class="project-placeholder">
-                                <i class="fa-solid fa-terminal"></i>
-                                 <div class="text-[0.5rem] font-bold uppercase tracking-[0.4em] opacity-30">Creative Terminal</div>
-                             </div>
-                         </div>
-                     </a>
+                            <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fmarxecheverria.github.io%2Fportfolio-interactivo%2F?w=1200" alt="Terminal Interactiva">
+                            <div class="iframe-shield"></div>
+                        </div>
+                    </a>
                     <div class="flex flex-col">
                         <span class="badge-type badge-concept">Concepto</span>
                         <h3 class="serif-font text-3xl font-bold mb-3">Terminal Interactiva</h3>
@@ -567,9 +714,86 @@
         </div>
     </footer>
 
+    <!-- Modal de Previsualización -->
+    <div id="preview-modal" class="hidden items-center justify-center p-4">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-controls">
+                    <div class="control-dot bg-[#ff5f56]"></div>
+                    <div class="control-dot bg-[#ffbd2e]"></div>
+                    <div class="control-dot bg-[#27c93f]"></div>
+                </div>
+                <div class="modal-url" id="modal-url-text">https://marxecheverria.com</div>
+                <div class="flex items-center gap-6">
+                    <a href="" id="modal-visit-link" target="_blank" class="text-[0.6rem] font-bold uppercase tracking-widest text-[var(--accent-gold)] hover:opacity-70 transition-all flex items-center gap-2">
+                        Visitar Sitio <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <div class="close-modal" onclick="closePreview()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-content">
+                <div class="loader-container" id="iframe-loader">
+                    <span class="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-white/40">Conectando con Servidor Seguro</span>
+                    <div class="loader-bar"><div class="loader-progress"></div></div>
+                </div>
+                <iframe id="preview-iframe" src="" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true, easing: 'ease-out-expo' });
+
+        // Elementos del Modal
+        const modal = document.getElementById('preview-modal');
+        const iframe = document.getElementById('preview-iframe');
+        const loader = document.getElementById('iframe-loader');
+        const urlText = document.getElementById('modal-url-text');
+        const visitLink = document.getElementById('modal-visit-link');
+
+        // Manejo de Previsualización
+        document.querySelectorAll('.browser-mockup').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const url = this.getAttribute('href');
+                openPreview(url);
+            });
+        });
+
+        function openPreview(url) {
+            document.body.style.overflow = 'hidden';
+            modal.classList.add('active');
+            modal.classList.remove('hidden');
+            
+            urlText.textContent = url.replace('http://', '').replace('https://', '');
+            visitLink.href = url;
+            
+            iframe.classList.remove('loaded');
+            loader.style.display = 'flex';
+            iframe.src = url;
+
+            iframe.onload = () => {
+                iframe.classList.add('loaded');
+                loader.style.display = 'none';
+            };
+        }
+
+        function closePreview() {
+            document.body.style.overflow = 'auto';
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                iframe.src = '';
+            }, 500);
+        }
+
+        // Cerrar con Escape
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) closePreview();
+        });
 
         function updateClock() {
             const now = new Date();
