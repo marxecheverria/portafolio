@@ -773,9 +773,30 @@
             
             iframe.classList.remove('loaded');
             loader.style.display = 'flex';
+            
+            // Reiniciar estado del loader
+            const loaderText = loader.querySelector('span');
+            loaderText.textContent = "Conectando con Servidor Seguro";
+            loaderText.classList.remove('text-red-400');
+
+            // Timer de seguridad para redirección automática si el servidor bloquea el iframe (X-Frame-Options)
+            // No podemos detectar el error de seguridad directamente por políticas de Same-Origin
+            const securityTimer = setTimeout(() => {
+                if (!iframe.classList.contains('loaded')) {
+                    loaderText.textContent = "Seguridad Detectada: Redireccionando al sitio seguro...";
+                    loaderText.classList.add('text-red-400');
+                    
+                    setTimeout(() => {
+                        window.open(url, '_blank');
+                        closePreview();
+                    }, 1500);
+                }
+            }, 5000); // 5 segundos de espera antes de decidir que el sitio bloquea el iframe
+
             iframe.src = url;
 
             iframe.onload = () => {
+                clearTimeout(securityTimer);
                 iframe.classList.add('loaded');
                 loader.style.display = 'none';
             };
